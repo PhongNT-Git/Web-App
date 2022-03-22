@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,500,600');
+
+@mixin elmPos($position, $margin, $top, $right, $bottom, $left, $width, $height) {
+  position: $position;
+  margin: $margin;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  width: $width;
+  height: $height;
+}
+
+@mixin elmFont($textAlign, $textTransform, $textDecoration, $letterSpacing, $fontSize, $fontWeight, $color) {
+  text-align: $textAlign;
+  text-transform: $textTransform;
+  text-decoration: $textDecoration;
+  letter-spacing: $letterSpacing;
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  color: $color;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  // background: rgb(88, 108, 119);
+  background: #3a6186;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(left, #89253e, #3a6186);
+  background: -o-linear-gradient(left, #89253e, #3a6186);
+  background: linear-gradient(to left, #89253e, #3a6186);  /* Chrome 10-25, Safari 5.1-6 */ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  font-family: 'Raleway', sans-serif;
+}
+
+.form-container {
+  @include elmPos(absolute, auto, 0, 0, 0, 0, 410px, 550px);
+  box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+  span.arrow {
+    @include elmPos(absolute, auto, 5px, initial, initial, -30px, 10px, 10px);
+    color: lightblue;
+    z-index: 5;
+    opacity: 1;
+    transition: left 2s;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  img {
+    @include elmPos(absolute, initial, initial, initial, initial, initial, 100%, 100%);
+    object-fit: cover;
+    filter: grayscale(50%);
+    opacity: 0.2;
+    z-index: -1;
+  }
+  .overlay {
+    @include elmPos(absolute, initial, initial, initial, initial, initial, inherit, inherit);
+    background: rgba(214, 214, 214, 0.1);
+    z-index: -1;
+    transition: opacity 1s;
+  }
+  .choose-form {
+    @include elmPos(absolute, initial, initial, initial, initial, initial, inherit, inherit);
+    z-index: 4;
+    .logo {
+      @include elmPos(absolute, auto, -100px, 0, 0, 0, inherit, 100px);
+      text-align: center;
+      color: white;
+      transition: right 2s;
+      i {
+        font-size: 30px;
+      }
+      h1 {
+        font-weight: 300;
+        span.bold {
+          font-weight: 600;
+        }
+      }
+    }
+    .buttons {
+      text-align: center;
+      @include elmPos(absolute, auto, 200px, 0, 0, 0, inherit, 100px);
+      a {
+        @include elmFont(inherit, uppercase, none, 0.1em, 12px, 500, white);
+        &:hover {
+          background: white;
+          color: lightblue;
+          border: 1px solid lightblue;
+        }
+      }
+      .button-login {
+        transition: right 2s;
+        transition-delay: .8s;
+        @include elmPos(absolute, auto, 40px, 0, 0, 0, 200px, 30px);
+      }
+      .button-signup {
+        transition: right 2s;
+        transition-delay: .5s;
+        @include elmPos(absolute, auto, -40px, 0, 0, 0, 200px, 30px);
+      }
+    }
+  }
+  .login-form {
+    opacity: 0;
+    transition: opacity 2s;
+  }
+  .register-form {
+    opacity: 0;
+    transition: opacity 2s;
+  }
+  .form {
+    @include elmPos(absolute, auto, 0, 0, 0, 0, inherit, 400px);
+    text-align: center;
+    .form-wrapper {
+      width: 250px;
+      height: 200px;
+      margin: 0 auto;
+      display: block;
+      label {
+        display: block;
+        @include elmFont(left, uppercase, initial, 0.1em, 12px, 600, lightblue);
+      }
+      input {
+        width: 250px;
+        height: 30px;
+        margin: 5px 0 10px 0;
+        outline: none;
+        border: none;
+        background: none;
+        border-bottom: 1px solid lightblue;
+        font-size: 12px;
+        color: lightblue;
+        &::placeholder {
+          color: rgba(19, 28, 36, 0.5);
+          opacity: 1;
+        }
+      }
+      a.forgot-password {
+        display: block;
+        @include elmFont(right, uppercase, none, 0.1em, 12px, 500, lightblue);
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+      button.button-submit {
+        @include elmFont(center, uppercase, none, 0.1em, 12px, 500, white);
+        background: none;
+        outline: none;
+        &:hover {
+          background: white;
+          color: lightblue;
+          border: 1px solid lightblue;
+          cursor: pointer;
+        }
+      }
+      .social-media {
+        @include elmPos(absolute, auto, initial, 0, 0, 0, inherit, initial);
+        h6 {
+          text-transform: uppercase;
+          color: lightblue;
+          &::before {
+            content: "";
+            @include elmPos(absolute, auto, 6px, initial, 0, 0, 65px, initial);
+            border-top: 1px solid lightblue;
+          }
+          &::after {
+            content: "";
+            @include elmPos(absolute, auto, 6px, 0, 0, initial, 65px, initial);
+            border-top: 1px solid lightblue;
+          }
+        }
+        .button-facebook {
+          border: none;
+          background: rgb(59, 89, 152);
+          @include elmFont(center, initial, none, initial, 12px, 600, white);
+          opacity: 0.8;
+          &:hover {
+            opacity: 1;
+          }
+        }
+        .button-google {
+          border: none;
+          background: rgb(219, 50, 54);
+          @include elmFont(center, initial, none, initial, 12px, 600, white);
+          opacity: 0.8;
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+.button {
+  margin: 10px auto;
+  padding: 7px 0;
+  border-radius: 10px;
+  border: 1px solid white;
+  width: 200px;
+  height: 30px;
+  display: block;
+  outline: none;
+}
